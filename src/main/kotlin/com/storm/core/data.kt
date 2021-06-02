@@ -1,5 +1,7 @@
 package com.storm.core
 
+import cn.afterturn.easypoi.excel.annotation.Excel
+
 data class Field(
     val column: String?,
     val type: String,
@@ -13,3 +15,16 @@ data class Table(
     val fields:List<Field>,
     val tableComment:String
 )
+
+/**
+ * excel生成实体类
+ */
+class ExcelFields{
+    @Excel(name="name")
+    lateinit var name: String
+    @Excel(name="intro")
+    lateinit var intro: String
+    @Excel(name="type")
+    lateinit var type: String
+
+}
