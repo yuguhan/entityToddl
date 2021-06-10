@@ -26,5 +26,7 @@ class ExcelFields{
     lateinit var intro: String
     @Excel(name="type")
     lateinit var type: String
+    @Excel(name="length")
+    lateinit var length: String
 
 }
