@@ -54,9 +54,17 @@ fun getOneField(excelFields: ExcelFields):String {
     return """
     /**
      * ${excelFields.intro}
+     * ${getMust(excelFields.mustHave.trim())}
      */
     private ${getType(excelFields.type,excelFields.name)} ${excelFields.name};        
     """
+}
+
+fun getMust(trim: String): String {
+    return when (trim) {
+        "1", "是" -> "必传"
+        else -> ""
+    }
 }
 
 /**

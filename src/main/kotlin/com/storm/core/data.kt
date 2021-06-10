@@ -28,5 +28,7 @@ class ExcelFields{
     lateinit var type: String
     @Excel(name="length")
     lateinit var length: String
+    @Excel(name="must")
+    var mustHave:String = ""
 
 }
