@@ -28,11 +28,12 @@ fun getPojo(currentFile: File): Unit {
 
     val input = currentFile.inputStream()
     val xssfWorkbook = XSSFWorkbook(input)
-    var index = 1
+    var index = 0
     xssfWorkbook.sheetIterator().forEach {
         val sheetName = it.sheetName
         val importParams = ImportParams()
-        importParams.sheetNum = index
+        importParams.startSheetIndex = index
+        importParams.sheetNum = 1
         val importExcel = ExcelImportUtil.importExcel<ExcelFields>(currentFile, ExcelFields::class.java, importParams)
             .distinctBy { f->f.name}
         createFile(sheetName,
