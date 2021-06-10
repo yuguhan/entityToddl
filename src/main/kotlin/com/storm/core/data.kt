@@ -11,24 +11,28 @@ data class Field(
 
 data class Table(
     val table: String,
-    val ids:List<String>,
-    val fields:List<Field>,
-    val tableComment:String
+    val ids: List<String>,
+    val fields: List<Field>,
+    val tableComment: String
 )
 
 /**
  * excel生成实体类
  */
-class ExcelFields{
-    @Excel(name="name")
-    lateinit var name: String
-    @Excel(name="intro")
-    lateinit var intro: String
-    @Excel(name="type")
-    lateinit var type: String
-    @Excel(name="length")
-    lateinit var length: String
-    @Excel(name="must")
-    var mustHave:String = ""
+class ExcelFields {
+    @Excel(name = "name")
+    var name = ""
+
+    @Excel(name = "intro")
+    var intro = ""
+
+    @Excel(name = "type")
+    var type = ""
+
+    @Excel(name = "length")
+    var length =  ""
+
+    @Excel(name = "must")
+    var mustHave = ""
 
 }
