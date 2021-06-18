@@ -35,4 +35,8 @@ class ExcelFields {
     @Excel(name = "must")
     var mustHave = ""
 
+    @Excel(name = "remarks")
+    var remarks = ""
+
+
 }

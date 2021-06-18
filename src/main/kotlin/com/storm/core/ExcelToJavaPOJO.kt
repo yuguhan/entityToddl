@@ -65,8 +65,9 @@ fun getOneField(excelFields: ExcelFields):String {
     /**
      * ${excelFields.intro}
      * ${getMust(excelFields.mustHave.trim())}
+     * ${excelFields.remarks}
      */
-    private ${getType(excelFields.type,excelFields.name)} ${excelFields.name};        
+    private ${getType(excelFields.type, excelFields.name)} ${excelFields.name};        
     """
 }
 
