@@ -38,6 +38,16 @@ fun getPojo(currentFile: File): Unit {
             .distinctBy { f->f.name}
         createFile(sheetName,
             """
+               
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ${StrUtil.upperFirst(sheetName)}{
     ${importExcel.joinToString("\n\n") { i-> getOneField(i) }}        
 }                
@@ -62,7 +72,7 @@ fun getOneField(excelFields: ExcelFields):String {
 
 fun getMust(trim: String): String {
     return when (trim) {
-        "1", "是" -> "必传"
+        "1", "是", "必须" -> "必传"
         else -> ""
     }
 }
@@ -73,6 +83,7 @@ fun getMust(trim: String): String {
 fun getType(type: String,name:String): String {
     val typeToUpperCase = type.trim().toUpperCase()
     return when {
+        "STRING" == typeToUpperCase -> "String"
         "NUMBER" == typeToUpperCase -> "BigDecimal"
         "OBJECT" == typeToUpperCase -> StrUtil.upperFirst(name.trim())
         "LIST" == typeToUpperCase -> "List<${StrUtil.upperFirst(name.trim())}>"
