@@ -63,17 +63,23 @@ public class ${StrUtil.upperFirst(sheetName)}{
 fun getOneField(excelFields: ExcelFields):String {
     return """
     /**
-     * ${excelFields.intro}
-     * ${getMust(excelFields.mustHave.trim())}
-     * ${excelFields.remarks}
+     * ${excelFields.intro}${getMust(excelFields.mustHave.trim())}${getRemarks(excelFields.remarks)}
      */
     private ${getType(excelFields.type, excelFields.name)} ${excelFields.name};        
     """
 }
 
+fun getRemarks(remarks: String): String {
+    if (remarks.isNullOrBlank()) {
+        return ""
+    }
+    return "\n     * $remarks"
+
+}
+
 fun getMust(trim: String): String {
     return when (trim) {
-        "1", "是", "必须" -> "必传"
+        "1", "是", "必须" -> "\n     * 必传"
         else -> ""
     }
 }
