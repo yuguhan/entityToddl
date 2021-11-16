@@ -49,7 +49,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ${StrUtil.upperFirst(sheetName)}{
-    ${importExcel.joinToString("\n\n") { i-> getOneField(i) }}        
+    ${importExcel.joinToString("") { i-> getOneField(i) }}        
 }                
     """
         )
@@ -61,11 +61,10 @@ public class ${StrUtil.upperFirst(sheetName)}{
 
 
 fun getOneField(excelFields: ExcelFields):String {
-    return """
-    /**
+    return """/**
      * ${excelFields.intro}${getMust(excelFields.mustHave.trim())}${getRemarks(excelFields.remarks)}
      */
-    private ${getType(excelFields.type, excelFields.name)} ${excelFields.name};        
+    private ${getType(excelFields.type, excelFields.name)} ${excelFields.name};
     """
 }
 
@@ -92,6 +91,7 @@ fun getType(type: String,name:String): String {
     return when {
         "STRING" == typeToUpperCase -> "String"
         "NUMBER" == typeToUpperCase -> "BigDecimal"
+        "CHAR" == typeToUpperCase -> "String"
         "OBJECT" == typeToUpperCase -> StrUtil.upperFirst(name.trim())
         "LIST" == typeToUpperCase -> "List<${StrUtil.upperFirst(name.trim())}>"
         checkDouble(type) -> "Double"
