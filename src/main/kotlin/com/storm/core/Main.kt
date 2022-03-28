@@ -5,6 +5,9 @@ import com.github.javaparser.ast.CompilationUnit
 import com.github.javaparser.ast.NodeList
 import com.github.javaparser.ast.body.VariableDeclarator
 import com.google.common.base.CaseFormat
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStreamWriter
@@ -12,43 +15,47 @@ import java.nio.charset.Charset
 import kotlin.io.path.ExperimentalPathApi
 
 object Mapping {
-    var map = HashMap<String, String>()
-    init {
-        map["boolean"] = "tinyint(1)"
-        map["int"] = "int"
-        map["short"] = "int"
-        map["long"] = "bigint"
-        map["float"] = "float"
-        map["double"] = "double"
-        map["char"] = "varchar(255)"
-        map["String"] = "varchar(255)"
-        map["Integer"] = "int"
-        map["byte[]"] = "blob"
-        map["Boolean"] = "tinyint(1)"
-        map["Long"] = "integer unsigned"
-        map["BigInteger"] = "bigint unsigned"
-        map["Float"] = "float"
-        map["Double"] = "float"
-        map["Date"] = "datetime"
-        map["Time"] = "time"
-        map["Timestamp"] = "datetime"
-        map["Date"] = "datetime"
-        map["LocalDateTime"] = "datetime"
-        map["LocalDate"] = "date"
-        map["Byte"] = "tinyint"
-        map["BigDecimal"] = "decimal"
-    }
+    private val map = hashMapOf<String, String>(
+        "boolean" to "tinyint(1)",
+        "int" to "int",
+        "short" to "int",
+        "long" to "bigint",
+        "float" to "float",
+        "double" to "double",
+        "char" to "varchar(255)",
+        "String" to "varchar(255)",
+        "Integer" to "int",
+        "byte[]" to "blob",
+        "Boolean" to "tinyint(1)",
+        "Long" to "integer unsigned",
+        "BigInteger" to "bigint unsigned",
+        "Float" to "float",
+        "Double" to "float",
+        "Date" to "datetime",
+        "Time" to "time",
+        "Timestamp" to "datetime",
+        "Date" to "datetime",
+        "LocalDateTime" to "datetime",
+        "LocalDate" to "date",
+        "Byte" to "tinyint",
+        "BigDecimal" to "decimal",
+    )
 
     fun getType(type:String):String?{
         return map[type]
     }
 
-
-
 }
 
 @ExperimentalPathApi
 fun main() {
+    println(Mapping.getType("boolean"))
+
+//    generate()
+
+}
+
+fun generate(){
     val path = "E:\\Users\\admin\\sourceCode\\infovalley-mall\\src\\main\\java\\com\\infovalley\\mall\\housekeeping\\model\\entity\\"
     val file = File(path)
     val outFile = File("C:\\Users\\admin\\Desktop\\ddl\\ddl.sql")
@@ -67,7 +74,6 @@ fun main() {
     }
     outputStreamWriter.close()
     fileOutputStream.close()
-
 }
 
 fun generateDDL(table: Table?):String? {

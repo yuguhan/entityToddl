@@ -8,6 +8,7 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStreamWriter
 import java.nio.charset.Charset
+import java.util.*
 
 val outFile = File("F:\\自动生成文件夹\\exceltopojo\\result")
 fun main() {
@@ -87,7 +88,7 @@ fun getMust(trim: String): String {
  * type转换可以自己实现
  */
 fun getType(type: String,name:String): String {
-    val typeToUpperCase = type.trim().toUpperCase()
+    val typeToUpperCase = type.trim().uppercase(Locale.getDefault())
     return when {
         "STRING" == typeToUpperCase -> "String"
         "NUMBER" == typeToUpperCase -> "BigDecimal"
