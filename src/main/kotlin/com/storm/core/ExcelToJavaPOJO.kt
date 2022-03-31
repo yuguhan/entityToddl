@@ -35,7 +35,7 @@ fun getPojo(currentFile: File): Unit {
         val importParams = ImportParams()
         importParams.startSheetIndex = index
         importParams.sheetNum = 1
-        val importExcel = ExcelImportUtil.importExcel<ExcelFields>(currentFile, ExcelFields::class.java, importParams)
+        val importExcel = ExcelImportUtil.importExcel<PoJoExcelFields>(currentFile, PoJoExcelFields::class.java, importParams)
             .distinctBy { f->f.name}
         createFile(sheetName,
             """
@@ -61,11 +61,11 @@ public class ${StrUtil.upperFirst(sheetName)}{
 }
 
 
-fun getOneField(excelFields: ExcelFields):String {
+fun getOneField(poJoExcelFields: PoJoExcelFields):String {
     return """/**
-     * ${excelFields.intro}${getMust(excelFields.mustHave.trim())}${getRemarks(excelFields.remarks)}
+     * ${poJoExcelFields.intro}${getMust(poJoExcelFields.mustHave.trim())}${getRemarks(poJoExcelFields.remarks)}
      */
-    private ${getType(excelFields.type, excelFields.name)} ${excelFields.name};
+    private ${getType(poJoExcelFields.type, poJoExcelFields.name)} ${poJoExcelFields.name};
     """
 }
 

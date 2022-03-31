@@ -19,7 +19,7 @@ data class Table(
 /**
  * excel生成实体类
  */
-class ExcelFields {
+class PoJoExcelFields {
     @Excel(name = "name")
     var name = ""
 
@@ -37,6 +37,11 @@ class ExcelFields {
 
     @Excel(name = "remarks")
     var remarks = ""
+}
 
-
+class CustData{
+    @Excel(name = "UC客户号")
+    var ucNo = ""
+    @Excel(name = "金证客户号")
+    var csNo = ""
 }
