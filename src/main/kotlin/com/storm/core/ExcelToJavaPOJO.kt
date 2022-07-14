@@ -10,9 +10,9 @@ import java.io.OutputStreamWriter
 import java.nio.charset.Charset
 import java.util.*
 
-val outFile = File("F:\\自动生成文件夹\\exceltopojo\\result")
+val outFile = File("/Users/xuyunpeng/Documents/企业金融文件/自动生成文件夹/exceltopojo/result/")
 fun main() {
-    val path = "F:\\自动生成文件夹\\exceltopojo\\"
+    val path = "/Users/xuyunpeng/Documents/企业金融文件/自动生成文件夹/exceltopojo/"
     val file = File(path)
 
     if (file.isDirectory) {
@@ -50,7 +50,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ${StrUtil.upperFirst(sheetName)}{
-    ${importExcel.joinToString("") { i-> getOneField(i) }}        
+    ${importExcel.filter { i->StrUtil.isNotEmpty(i.name) }.joinToString("") { i-> getOneField(i) }}        
 }                
     """
         )
@@ -101,7 +101,7 @@ fun getType(type: String,name:String): String {
 }
 
 fun checkDouble(str:String):Boolean{
-    return str.toUpperCase().contains("DOUBLE")
+    return str.uppercase() .contains("DOUBLE")
 }
 
 fun createFile(fileName:String,content:String){
