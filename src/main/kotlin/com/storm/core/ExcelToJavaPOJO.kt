@@ -31,7 +31,7 @@ fun getPojo(currentFile: File): Unit {
     val xssfWorkbook = XSSFWorkbook(input)
     var index = 0
     xssfWorkbook.sheetIterator().forEach {
-        val sheetName = it.sheetName
+        val sheetName = StrUtil.upperFirst(StrUtil.toCamelCase(it.sheetName))
         val importParams = ImportParams()
         importParams.startSheetIndex = index
         importParams.sheetNum = 1
@@ -49,7 +49,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ${StrUtil.upperFirst(sheetName)}{
+public class $sheetName{
     ${importExcel.filter { i->StrUtil.isNotEmpty(i.name) }.joinToString("") { i-> getOneField(i) }}        
 }                
     """
@@ -105,7 +105,7 @@ fun checkDouble(str:String):Boolean{
 }
 
 fun createFile(fileName:String,content:String){
-    val fileOutputStream = FileOutputStream("${outFile}/${StrUtil.upperFirst(fileName)}.java", false)
+    val fileOutputStream = FileOutputStream("${outFile}/$fileName.java", false)
 
     val outputStreamWriter = OutputStreamWriter(fileOutputStream, Charset.defaultCharset())
     outputStreamWriter.write(content)
