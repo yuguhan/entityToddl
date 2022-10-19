@@ -52,7 +52,7 @@ import lombok.NoArgsConstructor;
 public class $sheetName{
     ${importExcel.filter { i->StrUtil.isNotEmpty(i.name) }.joinToString("") { i-> getOneField(i) }}        
 }                
-    """
+"""
         )
         index++
     }
@@ -95,6 +95,8 @@ fun getType(type: String,name:String): String {
         "CHAR" == typeToUpperCase -> "String"
         "OBJECT" == typeToUpperCase -> StrUtil.upperFirst(name.trim())
         "LIST" == typeToUpperCase -> "List<${StrUtil.upperFirst(name.trim())}>"
+        "DATE" == typeToUpperCase -> "LocalDateTime"
+        "INTEGER" == typeToUpperCase -> "Integer"
         checkDouble(type) -> "Double"
         else -> type.trim()
     }

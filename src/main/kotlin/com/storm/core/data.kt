@@ -45,3 +45,51 @@ class CustData{
     @Excel(name = "金证客户号")
     var csNo = ""
 }
+
+
+class CountryDictData{
+    @Excel(name = "码")
+    var value = ""
+    @Excel(name = "名")
+    var label = ""
+}
+
+
+class CountryDictOut{
+    @Excel(name = "DT")
+    var oldValue = ""
+    @Excel(name = "ZZ")
+    var newValue = ""
+    @Excel(name = "国家名称")
+    var label = ""
+}
+
+
+class CustUserVo {
+    /**
+     * 客户号
+     */
+    @Excel(name = "客户号")
+    var custNo = "";
+
+    /**
+     * 客户名称
+     */
+    @Excel(name = "客户名称")
+    var custName = "";
+
+    /**
+     * 联系手机号
+     */
+    @Excel(name = "手机号")
+    var phone = "";
+
+    /**
+     * 联系人名称
+     */
+    @Excel(name = "用户名")
+    var name = "";
+
+}
+
+

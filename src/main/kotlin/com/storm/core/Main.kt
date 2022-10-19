@@ -49,16 +49,16 @@ object Mapping {
 
 @ExperimentalPathApi
 fun main() {
-    println(Mapping.getType("boolean"))
+//    println(Mapping.getType("boolean"))
 
-//    generate()
+    generate()
 
 }
 
 fun generate(){
-    val path = "E:\\Users\\admin\\sourceCode\\infovalley-mall\\src\\main\\java\\com\\infovalley\\mall\\housekeeping\\model\\entity\\"
+    val path = "/Users/xuyunpeng/Documents/企业金融文件/自动生成文件夹/exceltopojo/result/"
     val file = File(path)
-    val outFile = File("C:\\Users\\admin\\Desktop\\ddl\\ddl.sql")
+    val outFile = File("/Users/xuyunpeng/Documents/企业金融文件/自动生成文件夹/exceltopojo/ddl.sql")
     val fileOutputStream = FileOutputStream(outFile, true)
     val outputStreamWriter = OutputStreamWriter(fileOutputStream, Charset.defaultCharset())
 
